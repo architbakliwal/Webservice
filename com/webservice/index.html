@@ -1,0 +1,25 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <script>
+    (function() {
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:8080/",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(xhr, data) {
+                console.log(xhr);
+            }
+        });
+    })();
+    </script>
+</body>
+
+</html>
