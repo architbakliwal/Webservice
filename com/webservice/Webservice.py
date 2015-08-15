@@ -17,11 +17,14 @@ class WebService(object):
     def dispatch_request(self, request):
         req = request.args.get('name')
         print(req)
-        return Response('{"name":"Archit", "age":25}', mimetype="application/json")
+        res = {
+               "name": request.args.get('name'),
+               "age": request.args.get('age')
+               }
+        return Response(res, mimetype="application/json")
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)
-#         request.method = "POST"
         response = self.dispatch_request(request)
         response.headers.add('Access-Control-Allow-Origin', "null")
         return response(environ, start_response)
