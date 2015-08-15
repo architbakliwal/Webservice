@@ -8,19 +8,15 @@ import redis
 from werkzeug.wrappers import Request, Response
 from werkzeug.wsgi import SharedDataMiddleware
 
-
 class WebService(object):
 
     def __init__(self, config):
         self.redis = redis.Redis(config['redis_host'], config['redis_port'])
 
     def dispatch_request(self, request):
-        req = request.args.get('name')
-        print(req)
-        res = {
-               "name": request.args.get('name'),
-               "age": request.args.get('age')
-               }
+        res = {"name": request.args.get('name'), "age": request.args.get('age')}
+        res = str(res).replace("\'", "\"")
+        print(res)
         return Response(res, mimetype="application/json")
 
     def wsgi_app(self, environ, start_response):
