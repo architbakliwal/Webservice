@@ -11,6 +11,11 @@
         $.ajax({
             dataType: "json",
             url: "http://localhost:8080/",
+            method: 'GET',
+            data: {
+                name: 'Archit',
+                age: 25
+            },
             success: function(data) {
                 console.log(data);
             },

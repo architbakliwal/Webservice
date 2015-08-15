@@ -15,11 +15,13 @@ class WebService(object):
         self.redis = redis.Redis(config['redis_host'], config['redis_port'])
 
     def dispatch_request(self, request):
+        req = request.args.get('name')
+        print(req)
         return Response('{"name":"Archit", "age":25}', mimetype="application/json")
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)
-        request.method = "POST"
+#         request.method = "POST"
         response = self.dispatch_request(request)
         response.headers.add('Access-Control-Allow-Origin', "null")
         return response(environ, start_response)
