@@ -9,7 +9,6 @@ import redis
 from werkzeug.wrappers import Request, Response
 from werkzeug.wsgi import SharedDataMiddleware
 
-
 class WebService(object):
 
     def __init__(self, config):
